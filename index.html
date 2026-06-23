@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#2563eb" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="icon-192.png" />
+<title>國文考試報讀服務</title>
+<style>
+:root{--bg:#f6f8fb;--card:#fff;--text:#1f2937;--muted:#64748b;--brand:#2563eb;--brand2:#dbeafe;--border:#d7dee8;--ok:#16a34a;--danger:#dc2626}*{box-sizing:border-box}body{margin:0;font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;background:var(--bg);color:var(--text)}header{background:linear-gradient(135deg,#2563eb,#0f766e);color:white;padding:22px 18px}header h1{margin:0;font-size:clamp(24px,4vw,38px)}header p{margin:.5rem 0 0;font-size:16px;opacity:.95}.wrap{max-width:1180px;margin:0 auto;padding:18px}.panel{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 8px 24px #00000010;padding:18px;margin-bottom:16px}.controls{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:14px}@media(max-width:800px){.controls{grid-template-columns:1fr}}label{display:block;font-weight:700;margin-bottom:6px}select,input[type=range]{width:100%;font-size:18px;border:1px solid var(--border);border-radius:12px;padding:12px;background:white}.speedRow{display:flex;align-items:center;gap:10px}.badge{font-weight:800;background:var(--brand2);color:#1d4ed8;border-radius:999px;padding:6px 10px;white-space:nowrap}.questionHead{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.questionTitle{font-size:22px;font-weight:900;color:#0f172a}.questionText{font-size:clamp(28px,4vw,46px);line-height:1.65;font-weight:750;letter-spacing:.03em;margin:18px 0;padding:20px;border-radius:18px;background:#fff7ed;border:2px solid #fed7aa}.choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.choices{grid-template-columns:1fr}}.choice{font-size:clamp(22px,3vw,32px);line-height:1.45;background:#f8fafc;border:2px solid var(--border);border-radius:16px;padding:14px 16px;text-align:left;color:var(--text);font-weight:800;width:100%;min-height:70px;display:flex;align-items:center;justify-content:flex-start}.choice:hover,.choice:focus{background:#e0f2fe;border-color:#0284c7;outline:4px solid #bae6fd}.choice::before{content:'🔊';font-size:.9em;margin-right:.45em}.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}button{border:0;border-radius:14px;padding:14px 18px;font-size:20px;font-weight:800;cursor:pointer;background:var(--brand);color:white}button.secondary{background:#334155}button.light{background:#e2e8f0;color:#0f172a}button.danger{background:var(--danger)}button:disabled{opacity:.45;cursor:not-allowed}.readerText{font-size:18px;color:var(--muted);line-height:1.6}.mark{background:#fef08a;padding:0 .15em;border-radius:.25em}.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.small{font-size:15px;color:var(--muted)}.printOnly{display:none}@media print{header,.controls,.btns,.toolbar,.small{display:none}.panel{box-shadow:none}.printOnly{display:block}.questionText{font-size:28px}.choice{font-size:22px}}
+
+/* 平板專用大按鈕與全螢幕版 */
+body{min-height:100vh;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.appbar{position:sticky;top:0;z-index:10;background:#ffffffdd;backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}.appbar .wrap{display:flex;gap:10px;align-items:center;justify-content:space-between;padding-top:10px;padding-bottom:10px}.modeBtns{display:flex;gap:10px;flex-wrap:wrap}.tabletBtn{font-size:clamp(22px,3vw,34px);min-height:72px;border-radius:20px;padding:18px 24px}.controls select,.controls input{min-height:64px}.choice{min-height:92px}.bigNav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.bigNav button{min-height:78px;font-size:clamp(22px,3vw,34px)}.installBox{background:#ecfeff;border:2px solid #67e8f9;border-radius:18px;padding:14px;margin-top:14px;font-size:18px;line-height:1.6}.fsHint{font-weight:800;color:#075985}.hidden{display:none!important}@media (orientation:landscape) and (max-height:700px){header{display:none}.wrap{max-width:1280px}.questionText{font-size:clamp(24px,3vw,38px);margin:10px 0}.choice{min-height:72px}.panel{padding:12px;margin-bottom:10px}.readerText{display:none}}@media(max-width:900px){header h1{font-size:28px}.wrap{padding:12px}.panel{border-radius:22px}.controls{gap:12px}.btns button{flex:1 1 220px;min-height:72px}.questionText{font-size:34px}.choice{font-size:28px}.installBox{font-size:20px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><h1>國文考試報讀服務</h1><p>平板專用大按鈕版｜可全螢幕｜可安裝到桌面｜可發布到 GitHub Pages</p></div></header>
+<div class="appbar"><div class="wrap"><div class="fsHint">📱 平板操作模式</div><div class="modeBtns"><button id="fullscreenBtn" class="light">⛶ 全螢幕</button><button id="installBtn" class="light hidden">＋ 加到桌面</button></div></div></div>
+<main class="wrap">
+<section class="panel controls">
+  <div><label for="sectionSel">選擇大題</label><select id="sectionSel"></select></div>
+  <div><label for="questionSel">選擇題號</label><select id="questionSel"></select></div>
+  <div><label for="speed">語速 <span id="speedBadge" class="badge">1.0 倍</span></label><div class="speedRow"><span>慢</span><input id="speed" type="range" min="0.5" max="1.5" step="0.1" value="1"><span>快</span></div></div>
+</section>
+<section class="panel">
+  <div class="questionHead"><div><div id="meta" class="small"></div><div id="title" class="questionTitle"></div></div><div class="toolbar"><span class="badge" id="countBadge"></span></div></div>
+  <div id="questionText" class="questionText"></div>
+  <div id="choices" class="choices"></div>
+  <div class="btns"><button id="readAll" class="tabletBtn">▶ 完整報讀題目與選項</button><button id="readQ" class="secondary tabletBtn">只讀題目</button><button id="stop" class="danger tabletBtn">■ 停止</button><button id="prev" class="light tabletBtn">上一題</button><button id="next" class="light tabletBtn">下一題</button></div>
+  <p class="readerText">提示：按「完整報讀題目與選項」可一次聽完整題目；也可以直接按下方任一選項，只聽該選項內容，節省作答時間。</p>
+</section>
+
+<section class="panel installBox"><b>使用方式：</b>學生用平板掃描老師提供的 QR Code 開啟網站後，點「全螢幕」即可進入大畫面。iPad 可用 Safari 分享 → 加入主畫面；Android/Chrome 可點「加到桌面」。</section>
+</main>
+<script>
+const DATA = [
+{ id:'q2a', title:'第二大題　語詞填空－五柳先生傳', items:[
+['01','他因為違反校規，還（　　　），最後受到了學校的處分。',['Ａ 範疇','Ｂ 屢勸不聽','Ｃ 動輒得咎','Ｄ 精疲力竭','Ｅ 恬淡自得']],['02','跑完三千公尺後，他整個人（　　　）地癱坐在草地上休息。',['Ａ 範疇','Ｂ 屢勸不聽','Ｃ 動輒得咎','Ｄ 精疲力竭','Ｅ 恬淡自得']],['03','退休後，爺爺在鄉間種花養魚，過著（　　　）的田園生活。',['Ａ 範疇','Ｂ 屢勸不聽','Ｃ 動輒得咎','Ｄ 精疲力竭','Ｅ 恬淡自得']],['04','自然科學的（　　　）非常廣泛，包含了物理、化學和生物等。',['Ａ 範疇','Ｂ 屢勸不聽','Ｃ 動輒得咎','Ｄ 精疲力竭','Ｅ 恬淡自得']],['05','面對父母過度挑剔的管教方式，孩子常會產生（　　　）的無助感。',['Ａ 範疇','Ｂ 屢勸不聽','Ｃ 動輒得咎','Ｄ 精疲力竭','Ｅ 恬淡自得']],
+['06','他生性豪邁，每次與好友聚會總是（　　　），十分痛快。',['Ａ 佝僂老人','Ｂ 身先士卒','Ｃ 造飲輒盡','Ｄ 卒後','Ｅ 嗜睡']],['07','隊長（　　　）地衝入火場救人，隊員們見狀也紛紛跟進。',['Ａ 佝僂老人','Ｂ 身先士卒','Ｃ 造飲輒盡','Ｄ 卒後','Ｅ 嗜睡']],['08','街角那位（　　　）正吃力地推著回收車，背影令人心生憐憫。',['Ａ 佝僂老人','Ｂ 身先士卒','Ｃ 造飲輒盡','Ｄ 卒後','Ｅ 嗜睡']],['09','感冒藥裡有些成分容易產生（　　　）的副作用，服藥後別開車。',['Ａ 佝僂老人','Ｂ 身先士卒','Ｃ 造飲輒盡','Ｄ 卒後','Ｅ 嗜睡']],['10','他（　　　）被葬在故鄉的山丘上，完成了他渴望葉落歸根的心願。',['Ａ 佝僂老人','Ｂ 身先士卒','Ｃ 造飲輒盡','Ｄ 卒後','Ｅ 嗜睡']],
+['11','現在網路購物非常方便，只要在線上選購就能（　　　）到家。',['Ａ 簞瓢','Ｂ 貶謫','Ｃ 宅配','Ｄ 兵卒','Ｅ 吝嗇']],['12','在象棋殘局中，有時候一個小小的（　　　）也能發揮關鍵作用。',['Ａ 簞瓢','Ｂ 貶謫','Ｃ 宅配','Ｄ 兵卒','Ｅ 吝嗇']],['13','即便過著（　　　）屢空的貧困生活，他依然樂觀豁達、不改其樂。',['Ａ 簞瓢','Ｂ 貶謫','Ｃ 宅配','Ｄ 兵卒','Ｅ 吝嗇']],['14','蘇軾一生多次遭到（　　　），但他總能隨遇而安，寫出豁達的詩詞。',['Ａ 簞瓢','Ｂ 貶謫','Ｃ 宅配','Ｄ 兵卒','Ｅ 吝嗇']],['15','他雖然家財萬貫，但對公益活動卻非常（　　　），一毛不拔，是隻鐵公雞。',['Ａ 簞瓢','Ｂ 貶謫','Ｃ 宅配','Ｄ 兵卒','Ｅ 吝嗇']],
+['16','他在班級群組裡總是默默（　　　），很少參與大家的討論。',['Ａ 岌岌可危','Ｂ 頗','Ｃ 汲汲','Ｄ 酣觴','Ｅ 潛水']],['17','這棟老舊房屋在強震過後結構受損，處於（　　　）的狀態。',['Ａ 岌岌可危','Ｂ 頗','Ｃ 汲汲','Ｄ 酣觴','Ｅ 潛水']],['18','與其（　　　）追求名牌，不如多充實內涵，讓自己更有價值。',['Ａ 岌岌可危','Ｂ 頗','Ｃ 汲汲','Ｄ 酣觴','Ｅ 潛水']],['19','多年好友在異地重逢，大家在餐敘中（　　　）暢談、好不痛快。',['Ａ 岌岌可危','Ｂ 頗','Ｃ 汲汲','Ｄ 酣觴','Ｅ 潛水']],['20','他經過一番努力後終於奪得冠軍，這讓父母感到（　　　）為欣慰。',['Ａ 岌岌可危','Ｂ 頗','Ｃ 汲汲','Ｄ 酣觴','Ｅ 潛水']]
+]},
+{ id:'q2b', title:'第二大題　語詞填空－貓的天堂', items:[
+['01','拿到夢寐以求的禮物後，妹妹（　　　）地向大家炫耀。',['Ａ 打哆嗦','Ｂ 冷不防','Ｃ 獻殷勤','Ｄ 喜孜孜','Ｅ 不由得']],['02','強烈寒流來襲，刺骨的冷風凍得路人忍不住直（　　　）。',['Ａ 打哆嗦','Ｂ 冷不防','Ｃ 獻殷勤','Ｄ 喜孜孜','Ｅ 不由得']],['03','看到感人至深的電影情節，她（　　　）流下了動人的淚水。',['Ａ 打哆嗦','Ｂ 冷不防','Ｃ 獻殷勤','Ｄ 喜孜孜','Ｅ 不由得']],['04','就在大家專心聽講時，後門（　　　）傳來一聲巨響，嚇壞眾人。',['Ａ 打哆嗦','Ｂ 冷不防','Ｃ 獻殷勤','Ｄ 喜孜孜','Ｅ 不由得']],['05','為了尋求對方原諒，他整天忙前忙後地（　　　），展現十足誠意。',['Ａ 打哆嗦','Ｂ 冷不防','Ｃ 獻殷勤','Ｄ 喜孜孜','Ｅ 不由得']],
+['06','他性格（　　　），有話直說，從不喜歡在背後拐彎抹角。',['Ａ 厭煩','Ｂ 嚮往','Ｃ 直率','Ｄ 信念','Ｅ 剎那']],['07','流星劃過天際的（　　　），雖然短暫卻留下了永恆的美麗。',['Ａ 厭煩','Ｂ 嚮往','Ｃ 直率','Ｄ 信念','Ｅ 剎那']],['08','每天重複同樣且單調的工作，難免會讓人感到有些（　　　）。',['Ａ 厭煩','Ｂ 嚮往','Ｃ 直率','Ｄ 信念','Ｅ 剎那']],['09','他從小就（　　　）自由自在的旅行，希望能踏遍世界每個角落。',['Ａ 厭煩','Ｂ 嚮往','Ｃ 直率','Ｄ 信念','Ｅ 剎那']],['10','憑著堅定的（　　　），他克服了種種困難，最終實現了自己的夢想。',['Ａ 厭煩','Ｂ 嚮往','Ｃ 直率','Ｄ 信念','Ｅ 剎那']],
+['11','他那（　　　）的態度，常讓身邊的朋友感到難以親近。',['Ａ 好逸惡勞','Ｂ 踉踉蹌蹌','Ｃ 心灰意冷','Ｄ 自命不凡','Ｅ 心悅誠服']],['12','喝醉酒的他腳步（　　　），差點就在家門口的階梯摔倒。',['Ａ 好逸惡勞','Ｂ 踉踉蹌蹌','Ｃ 心灰意冷','Ｄ 自命不凡','Ｅ 心悅誠服']],['13','他因（　　　）而不願找工作，整天只待在家裡無所事事。',['Ａ 好逸惡勞','Ｂ 踉踉蹌蹌','Ｃ 心灰意冷','Ｄ 自命不凡','Ｅ 心悅誠服']],['14','接連遭遇失敗的打擊，讓他感到（　　　），提不起勁努力。',['Ａ 好逸惡勞','Ｂ 踉踉蹌蹌','Ｃ 心灰意冷','Ｄ 自命不凡','Ｅ 心悅誠服']],['15','他那公正無私的處事態度與氣度，讓在座所有人感到（　　　）。',['Ａ 好逸惡勞','Ｂ 踉踉蹌蹌','Ｃ 心灰意冷','Ｄ 自命不凡','Ｅ 心悅誠服']],
+['16','這隻被（　　　）多年的家犬非常溫馴，深受全家人的喜愛。',['Ａ 融融','Ｂ 如出一轍','Ｃ 豢養','Ｄ 淡然','Ｅ 發慌']],['17','這兩篇報導的觀點與敘述方式（　　　），令人懷疑是否抄襲。',['Ａ 融融','Ｂ 如出一轍','Ｃ 豢養','Ｄ 淡然','Ｅ 發慌']],['18','冬日的陽光灑進屋內，營造出一種暖意（　　　）的溫馨氛圍。',['Ａ 融融','Ｂ 如出一轍','Ｃ 豢養','Ｄ 淡然','Ｅ 發慌']],['19','面對名利的誘惑，他始終保持（　　　）的心態，不與人爭名奪利。',['Ａ 融融','Ｂ 如出一轍','Ｃ 豢養','Ｄ 淡然','Ｅ 發慌']],['20','眼看面試的時間就快到了，捷運卻突然故障，讓他心裡直（　　　）。',['Ａ 融融','Ｂ 如出一轍','Ｃ 豢養','Ｄ 淡然','Ｅ 發慌']]
+]},
+{ id:'q3', title:'第三大題　注釋', items:[
+['01','眺望', ['瞬間','從高處往下看','自以為很了不起','因為害怕或寒冷而身體發抖','形容事情發生得很突然，讓人措手不及']],
+['02','剎那', ['瞬間','從高處往下看','自以為很了不起','因為害怕或寒冷而身體發抖','形容事情發生得很突然，讓人措手不及']],
+['03','自命不凡', ['瞬間','從高處往下看','自以為很了不起','因為害怕或寒冷而身體發抖','形容事情發生得很突然，讓人措手不及']],
+['04','打哆嗦', ['瞬間','從高處往下看','自以為很了不起','因為害怕或寒冷而身體發抖','形容事情發生得很突然，讓人措手不及']],
+['05','冷不防', ['瞬間','從高處往下看','自以為很了不起','因為害怕或寒冷而身體發抖','形容事情發生得很突然，讓人措手不及']],
+['06','獻殷勤', ['散步','微笑','忍不住','完全相同，毫無差別','特別熱情地對待某人，想討好對方']],
+['07','蹓躂', ['散步','微笑','忍不住','完全相同，毫無差別','特別熱情地對待某人，想討好對方']],
+['08','莞爾', ['散步','微笑','忍不住','完全相同，毫無差別','特別熱情地對待某人，想討好對方']],
+['09','如出一轍', ['散步','微笑','忍不住','完全相同，毫無差別','特別熱情地對待某人，想討好對方']],
+['10','不由得', ['散步','微笑','忍不住','完全相同，毫無差別','特別熱情地對待某人，想討好對方']],
+['11','或', ['每次到訪喝酒，總是把酒喝光','粗布短衣，衣服破爛','安然自得的樣子','有的、有人','捨不得']],
+['12','吝', ['每次到訪喝酒，總是把酒喝光','粗布短衣，衣服破爛','安然自得的樣子','有的、有人','捨不得']],
+['13','晏如', ['每次到訪喝酒，總是把酒喝光','粗布短衣，衣服破爛','安然自得的樣子','有的、有人','捨不得']],
+['14','短褐穿結', ['每次到訪喝酒，總是把酒喝光','粗布短衣，衣服破爛','安然自得的樣子','有的、有人','捨不得']],
+['15','造飲輒盡', ['每次到訪喝酒，總是把酒喝光','粗布短衣，衣服破爛','安然自得的樣子','有的、有人','捨不得']],
+['16','忘懷得失', ['推究','準備、購買','暢快的飲酒作詩','忘記一切世俗的得失','居室簡陋，十分貧窮']],
+['17','「極」其言', ['推究','準備、購買','暢快的飲酒作詩','忘記一切世俗的得失','居室簡陋，十分貧窮']],
+['18','環堵蕭然', ['推究','準備、購買','暢快的飲酒作詩','忘記一切世俗的得失','居室簡陋，十分貧窮']],
+['19','「置」酒而招之', ['推究','準備、購買','暢快的飲酒作詩','忘記一切世俗的得失','居室簡陋，十分貧窮']],
+['20','酣觴賦詩', ['推究','準備、購買','暢快的飲酒作詩','忘記一切世俗的得失','居室簡陋，十分貧窮']],
+['21','無懷氏之民歟！葛天氏之民歟！', ['急切追求','憂慮的樣子','從來不會捨不得離開','五柳先生大概就是黔婁這一類的人吧？','意指五柳先生像是生活在上古淳樸社會中的人一樣']],
+['22','茲若人之儔乎', ['急切追求','憂慮的樣子','從來不會捨不得離開','五柳先生大概就是黔婁這一類的人吧？','意指五柳先生像是生活在上古淳樸社會中的人一樣']],
+['23','不「戚戚」於貧賤', ['急切追求','憂慮的樣子','從來不會捨不得離開','五柳先生大概就是黔婁這一類的人吧？','意指五柳先生像是生活在上古淳樸社會中的人一樣']],
+['24','不「汲汲」於富貴', ['急切追求','憂慮的樣子','從來不會捨不得離開','五柳先生大概就是黔婁這一類的人吧？','意指五柳先生像是生活在上古淳樸社會中的人一樣']],
+['25','曾不吝情去留', ['急切追求','憂慮的樣子','從來不會捨不得離開','五柳先生大概就是黔婁這一類的人吧？','意指五柳先生像是生活在上古淳樸社會中的人一樣']]
+]},
+{ id:'q4a', title:'第四大題　課文理解題－五柳先生傳', items:[
+['01','「五柳先生」這個稱號因何得來？',['(A) 住家旁種有五棵柳樹','(B) 詩文中總會寫到柳樹','(C) 友人曾經送他五棵柳樹','(D) 每次喝醉都會躺在柳樹邊']],['02','「閑靜少言，不慕榮利。」這句話是形容五柳先生的何種個性？',['(A) 不擅長發表演說','(B) 沉默寡言，不貪圖富貴','(C) 不喜交際或與人互動，憤世嫉俗','(D) 不苟言笑，非常嚴肅']],['03','五柳先生讀書「不求甚解」，又「每有會意，便欣然忘食」。由此推知，五柳先生的讀書態度為何？',['(A) 苟且敷衍，得過且過，隨便讀一讀就好','(B) 心領神會，了解內容','(C) 讀書要精熟，牢記不忘','(D) 鑽牛角尖，不馬虎草率']],['04','〈五柳先生傳〉乃陶淵明自況，但作者不直接寫自傳的原因何在？',['(A) 家貧而愧對祖先，不敢說出姓氏','(B) 想引起讀者興趣，並增加神祕成分','(C) 以第三人稱給人客觀的感覺，並表達自我理想','(D) 感嘆生不逢時']],['05','陶淵明在〈五柳先生傳〉中說：「無懷氏之民歟！葛天氏之民歟！」其用意為何？',['(A) 嚮往上古人物逍遙自適的生活','(B) 敬佩無懷氏與葛天氏愛護人民','(C) 五柳先生是上古社會的直系後代子孫','(D) 慶幸身處太平盛世，生活安定']],['06','下列哪一句最能表現出五柳先生安於貧窮的個性？',['(A) 環堵蕭然，不蔽風日，短褐穿結，簞瓢屢空。—晏如也','(B) 無懷氏之民歟！葛天氏之民歟！','(C) 造飲輒盡，期在必醉，既醉而退，曾不吝情去留。','(D) 閑靜少言，不慕榮利。']],['07','陶淵明這一生不曾扮演何種角色？',['(A) 田園詩人','(B) 紅頂商人','(C) 自耕小農','(D) 彭澤縣令']],['08','「常著文章自娛，頗示己志」這段話的含義與下列何者最相近？',['(A) 閑靜少言，不慕榮利','(B) 忘懷得失，以此自終','(C) 不戚戚於貧賤','(D) 酣觴賦詩，以樂其志']],['09','「環堵蕭然，不蔽風日，短褐穿結，簞瓢屢空。」這段話主要在描述五柳先生生活上哪些方面的貧困情形？',['(A) 食、衣','(B) 食、住','(C) 住、衣、食','(D) 食、衣、住、行']],['10','「造飲輒盡，期在必醉，既醉而退，曾不吝情去留。」這段話最能表現出五柳先生生活中的何種個性？',['(A) 不求甚解','(B) 委屈忍耐','(C) 率性而為','(D) 認真努力']],['11','下列哪一個「其」字不是指五柳先生？',['(A) 不詳「其」姓字','(B) 親舊知「其」如此','(C) 酣觴賦詩，以樂「其」志','(D) 極「其」言，茲若人之儔乎']],['12','下列選項，何者最不具有因果關係？',['(A) 因為「家貧」，所以「環堵蕭然」','(B) 因為「家貧」，所以酒「不能常得」','(C) 因為「好讀書」，所以「不求甚解」','(D) 因為「宅邊有五柳樹」，所以「為號焉」']],['13','下列何者不是容器？',['(A) 觴','(B) 簞','(C) 瓢','(D) 褐']],['14','下面哪一個情況最符合「動輒得咎」的意思？',['(A) 小明考試得到100分，老師稱讚他很認真。','(B) 小華在家裡不管是看電視、寫作業，還是幫忙做家事，爸爸總能找到理由責備他。','(C) 小美每天準時到學校，同學都很喜歡她。','(D) 小強放學後去公園打球，玩得很開心。']],['15','比較誰的生活是比較接近五柳先生？',['(A) 豪華舒適的客廳生活','(B) 破舊但仍有電腦與床的房間','(C) 優美庭院中的安適生活','(D) 破舊茅屋、遮不住風日、衣食缺乏的生活']]
+]},
+{ id:'q4b', title:'第四大題　課文理解題－貓的天堂', items:[
+['01','安哥拉貓想出走的動機為何？',['(A) 主人沒有善待他','(B) 窗外野貓朋友的邀請','(C) 嚮往外面世界的自由新奇','(D) 在屋內缺乏同儕的友誼']],
+['02','剛離開舒適圈，安哥拉貓有許多有趣的經驗，不包括下列何者？',['(A) 腳爪陷在暖泥裡很舒服','(B) 溫暖的陽光令他很享受','(C) 排水槽散發迷人的香氣','(D) 同儕友善歡迎他加入']],
+['03','「算了！你將來還會遇到許多類似的事呢！」老公貓說這句話有何用意？',['(A) 勉勵安哥拉貓不畏艱難','(B) 預示安哥拉貓的新生活會有許多波折','(C) 新生活有許多趣事等著發掘','(D) 會有更多可愛的母貓，不用急於一時的追求']],
+['04','安哥拉貓在窗外世界闖蕩一圈後，讓他對天堂的認知有了何種改變？',['(A) 享受衣食無缺的生活才是他的天堂','(B) 為生活自由而努力，是高尚的美德','(C) 擁有像老公貓般的生存智慧，無處不是天堂','(D) 作者姑媽給予的親情就是最好的境界']],
+['05','為何老公貓拒絕安哥拉貓的邀請，不願和他一起回作者姑媽家呢？',['(A) 不願意寄人籬下，接受施捨','(B) 不希望好友安哥拉貓所受的寵愛不完整','(C) 曾有被主人遺棄的受傷經驗','(D) 比起溫暖舒適的環境，他更嚮往無拘無束的生活']],
+['06','根據本文所述，安哥拉貓和老公貓一起過外面的生活，他們可能需要克服：甲、為了食物需要在外奔波，還得忍受寒冷。乙、街上背簍子、拿鐵鉤的人會危及他們性命。丙、有警犬定時追捕野貓。丁、許多時候需要和其他野貓競爭。戊、骯髒的環境使貓兒容易得傳染病。下列何者正確？',['(A) 甲乙丙','(B) 甲乙丁','(C) 乙丙戊','(D) 甲丁戊']],
+['07','你認為作者為何一開始就認為安哥拉貓是隻很蠢的貓呢？',['(A) 不懂得知足常樂，安於現狀','(B) 隨機應變能力差，無法適應外面的生活','(C) 生活盲目，缺乏目標，只知跟著別人的步伐','(D) 他將不曾經歷過的生活想得太美好，一旦面對現實，又無法接受考驗']],
+['08','根據本文，老公貓帶領安哥拉貓在窗外世界生活的過程，可看出牠們追求自由所付出的代價為何？',['(A) 失去人際互動和美好的青春歲月','(B) 失去物質享受和美好的青春歲月','(C) 失去物質享受和生命安全的保障','(D) 失去人際互動和生命安全的保障']],
+['09','根據本文，安哥拉貓、老公貓最終各自對天堂的認知為何？',['(A) 老公貓認為只要用心體會，天堂就在自己身邊','(B) 老公貓認為天堂雖得忍受些許不便，卻能享有不受束縛的生活','(C) 安哥拉貓認為天堂不但能擁有物質享受，還能保有個人的尊嚴','(D) 安哥拉貓認為天堂是擁有同甘共苦的夥伴和姑媽的寵愛']]
+]},
+{ id:'q4c', title:'第四大題　貓的天堂－語氣判斷', items:[
+['01','我兩歲時就已自命不凡，瞧不起家裡舒適溫暖的生活。',['A 斥責','B 叮嚀','C 驚訝','D 自以為是','E 懊悔']],
+['02','你這個蠢蛋！要是被關在你那溫暖舒適的環境，我寧可去死！',['A 斥責','B 叮嚀','C 驚訝','D 自以為是','E 懊悔']],
+['03','我大叫：「這街道不是我們的嗎？不但吃不到東西，還可能被吃掉？」',['A 斥責','B 叮嚀','C 驚訝','D 自以為是','E 懊悔']],
+['04','唉！該死的街道！要命的自由！我多麼懷念你姑媽家裡的那片小天地！',['A 斥責','B 叮嚀','C 驚訝','D 自以為是','E 懊悔']],
+['05','老公貓說：「桌上的肉只能遠遠地看，要找吃的，還是得到排水槽裡。」',['A 斥責','B 叮嚀','C 驚訝','D 自以為是','E 懊悔']]
+]},
+{ id:'q5', title:'第五大題　古文翻譯', items:[
+['01','先生不知何許人也，亦不詳其姓字，宅邊有五柳樹，因以為號焉。',['A 先生的為人，安閒沉靜，很少說話，不羨慕榮華利祿。','B 對於財富權貴不努力去求取，對於貧窮卑賤不感到憂慮。','C 屋內空蕩蕩的，遮蔽不了風吹日晒，穿的粗布短衣破破爛爛、縫縫補補，飲食常常缺乏不足。','D 他去喝酒總是要喝到盡興，希望一定喝醉了才肯停止，已經喝醉了就告辭，從來不會捨不得離開。','E 他生性喜歡喝酒，卻因家境貧窮，不能常有酒喝，親戚老友知道他這種情況，有的人就準備了酒招待他。','F 喜歡讀書，但不拘泥字句，不鑽研無關緊要的問題，每當對書中的道理有所領會的時候，便高興得忘記吃飯。','G 先生不知道是什麼地方的人，也不清楚他的姓氏名字，由於住宅旁邊有五棵柳樹，因此人家就把「五柳」作為他的稱號了。']],['02','閑靜少言，不慕榮利。',[]],['03','好讀書，不求甚解，每有會意，便欣然忘食。',[]],['04','性嗜酒，家貧不能常得，親舊知其如此，或置酒而招之。',[]],['05','造飲輒盡，期在必醉，既醉而退，曾不吝情去留。',[]],['06','環堵蕭然，不蔽風日。短褐穿結，簞瓢屢空。',[]],['07','不戚戚於貧賤，不汲汲於富貴。',[]]
+]},
+{ id:'q6', title:'第六大題　偏義複詞', items:[
+['01','這兩人的恩怨太深，不是一時半刻可以化解的。→（　　　）',[]],['02','只顧欣賞沿途的風景，忘了路的遠近。→（　　　）',[]],['03','敵軍仍在觀望，戰場上一點動靜也沒有。→（　　　）',[]],['04','做人要厚道，不可只求自保，不顧他人死活。→（　　　）',[]],['05','他非常計較得失，所以總是無法敞開心胸。→（　　　）',[]]
+]},
+{ id:'q7', title:'第七大題　閱讀測驗－古代生活用具', items:[
+['01','古代烹煮器具，圓腹、兩耳、三足，腹下有較多的空間可以燒火煮食。一言九（　　　）', ['盤','鼎','釜','觥','壺']],['02','圓底，有兩耳，可以置於灶上烹煮食物，類似現代的鐵鍋。破（　　　）沉舟', ['盤','鼎','釜','觥','壺']],['03','腹大口小，有提把，可以用來裝酒或裝水，類似現代的酒瓶、水瓶。懸（　　　）濟世', ['盤','鼎','釜','觥','壺']],['04','口大、環形足，類似現代的水盆。杯（　　　）狼藉', ['盤','鼎','釜','觥','壺']],['05','蓋子做成獸形的酒杯。杯（　　　）交錯', ['盤','鼎','釜','觥','壺']]
+]},
+{ id:'q8', title:'第八大題　寫作測驗（加分題）', items:[
+['01','請為五柳先生寫個介紹，讓大家認識他吧，可以使用以下關鍵詞串聯。', ['外號','嗜好','喝酒','讀書','貧窮','不擔心憂慮','不追求','家徒四壁','三餐不繼','粗布短衣']]
+]}
+];
+const sectionSel=document.getElementById('sectionSel'), questionSel=document.getElementById('questionSel'), speed=document.getElementById('speed');
+const title=document.getElementById('title'), meta=document.getElementById('meta'), qText=document.getElementById('questionText'), choices=document.getElementById('choices'), countBadge=document.getElementById('countBadge'), speedBadge=document.getElementById('speedBadge');
+function populateSections(){DATA.forEach((s,i)=>{const o=document.createElement('option');o.value=i;o.textContent=s.title;sectionSel.appendChild(o)});populateQuestions();render();}
+function populateQuestions(){const s=DATA[+sectionSel.value]; questionSel.innerHTML=''; s.items.forEach((it,i)=>{const o=document.createElement('option');o.value=i;o.textContent=`第 ${it[0]} 題`;questionSel.appendChild(o)});}
+function render(){const s=DATA[+sectionSel.value], it=s.items[+questionSel.value]; meta.textContent=s.title; title.textContent=`第 ${it[0]} 題`; qText.textContent=it[1]; choices.innerHTML=''; (it[2]||[]).forEach((c,idx)=>{const d=document.createElement('button');d.type='button';d.className='choice';d.textContent=c;d.setAttribute('aria-label','朗讀選項 '+c);d.onclick=()=>speak(c);choices.appendChild(d)}); countBadge.textContent=`${+questionSel.value+1} / ${s.items.length}`; document.getElementById('prev').disabled=+questionSel.value===0; document.getElementById('next').disabled=+questionSel.value===s.items.length-1;}
+function currentText(includeChoices=true){const s=DATA[+sectionSel.value], it=s.items[+questionSel.value]; let t=`${it[1]}`; if(includeChoices && it[2] && it[2].length) t += '。選項：' + it[2].join('。'); return t;}
+function speak(txt){speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(txt); u.lang='zh-TW'; u.rate=parseFloat(speed.value); const voices=speechSynthesis.getVoices(); const zh=voices.find(v=>/zh|Chinese|Taiwan|Taiwanese/i.test(v.lang+v.name)); if(zh) u.voice=zh; speechSynthesis.speak(u);}
+sectionSel.addEventListener('change',()=>{populateQuestions();render();}); questionSel.addEventListener('change',render); speed.addEventListener('input',()=>speedBadge.textContent=parseFloat(speed.value).toFixed(1)+' 倍');
+document.getElementById('readAll').onclick=()=>speak(currentText(true)); document.getElementById('readQ').onclick=()=>speak(currentText(false)); document.getElementById('stop').onclick=()=>speechSynthesis.cancel();
+document.getElementById('prev').onclick=()=>{questionSel.value=+questionSel.value-1;render();}; document.getElementById('next').onclick=()=>{questionSel.value=+questionSel.value+1;render();};
+populateSections();
+
+
+// PWA / 平板全螢幕輔助
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt', e=>{e.preventDefault();deferredPrompt=e;const b=document.getElementById('installBtn'); if(b) b.classList.remove('hidden');});
+document.getElementById('installBtn')?.addEventListener('click', async()=>{if(!deferredPrompt) return; deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt=null; document.getElementById('installBtn').classList.add('hidden');});
+async function enterFullscreen(){try{const el=document.documentElement;if(el.requestFullscreen) await el.requestFullscreen(); else if(el.webkitRequestFullscreen) await el.webkitRequestFullscreen();}catch(e){}}
+document.getElementById('fullscreenBtn')?.addEventListener('click', enterFullscreen);
+let firstTap=false; document.addEventListener('pointerdown',()=>{ if(!firstTap){firstTap=true; enterFullscreen();}}, {once:true});
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
+</script>
+</body>
+</html>
